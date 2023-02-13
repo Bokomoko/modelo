@@ -70,7 +70,63 @@
                   <td>{{ aluno.nickname}}</td>
                   <td>{{ aluno.nome}}</td>
                   <td>{{ aluno.email}}</td>
-                  <td>ACTIONS</td>
+                  <td>
+                    <button type="button" class="btn btn-primary btn-sm" href="{% url 'view_aluno' aluno.id %}"
+                      data-bs-toggle="modal" data-bs-target="#modalViewAluno{{aluno.id}}">
+                      <i class="fas fa-circle-info fa-lg"></i>
+                    </button>
+                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                      data-bs-target="#modalViewAluno{{aluno.id}}">
+                      <i class="fas fa-edit fa-lg"></i>
+                    </button>
+                    <!-- Modal - View Aluno -->
+                    <div class="modal" id="modalViewAluno{{aluno.id}}" tabindex="-1"
+                      aria-labelledby="modalViewAlunoLabel1" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title">Aluno: {{ aluno.nickname }}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true"></span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <ul class="list-unstyled">
+                              <li>
+                                <strong>Nome/Nickname:</strong>
+                                {{ aluno.nome }}/{{aluno.nickname}}
+                              </li>
+                              <li>
+                                <strong>Email:</strong>
+                                {{ aluno.email }}
+                              </li>
+                              <li>
+                                <strong>Interesse:</strong>
+                                {{ aluno.campo_de_estudo }}
+                              </li>
+                              <li>
+                                <strong>Discord:</strong>
+                                {{ aluno.discordid }}
+                              </li>
+                              <li>
+                                <strong>Telefone:</strong>
+                                {{ aluno.telefone }}
+                              </li>
+                              <li>
+                                <strong>Dat Nasc:</strong>
+                                {{ aluno.data_nascimento }}
+                              </li>
+
+                            </ul>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-primary">Salvar alterações</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
                 </tr>
 
                 {% endfor %}
