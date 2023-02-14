@@ -1,0 +1,30 @@
+{% extends "paginaalunos/base.html" %}
+{% block content %}
+<h3 class="text-center m-4">Incluir/Adicionar Aluno</h3>
+{% if success %}
+<div class="alert alert-success" role="alert">
+  <strong>Aluno adicionado com sucesso!</strong>
+  <a href="{% url 'index' %}" class="alert-link">Voltar ao início</a>
+</div>
+{% else %}
+<!-- No success means that we must show the input form for a new Aluno -->
+<div class="row justify-content-center">
+  <div class="col-6">
+    <div class="card border-light mb-3">
+      <div class="card-header">
+        <i class="fas fa-user-plus fa-lg m-3 mt-3"></i>
+        <span>Adicionar Aluno</span>
+      </div>
+      <div class="card-body">
+        <form action="{% url 'add' %}" method="POST">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit" class="btn btn-primary">Adicionar</button>
+          <a href="{% url 'index' %}" class="btn btn-secondary">Cancelar</a>
+        </form>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+  {% endblock %}

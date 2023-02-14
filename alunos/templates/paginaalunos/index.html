@@ -1,137 +1,85 @@
-{% load static %}
-<!DOCTYPE html>
+{% extends "paginaalunos/base.html" %}
+{% block content %}
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href={% static 'css/bootstrap.min.css' %}>
-  <title>Página Alunos</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
-    integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
-
-<body class="d-flex flex-column min-vh-100">
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">
-        <i class="fas fa-graduation-cap fa-lg" style="color:brown"></i>
-        Palheiro de Alunos
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01"
-        aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarColor01">
-        <ul class="navbar-nav me-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <i class="fas fa-list"></i>
-              Toda a cambada
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <i class="fas fa-plus"></i>
-              Cadastrar aluno
-            </a>
-          </li>
-
+<h3 class="m-4">Toda a cambada</h3>
+<div class="row">
+  <div class="col-12">
+    {% if alunos %}
+    <div class="card br-light ms-4 me-4 mb-4" style="width:20%">
+      <div class="card-header bg-primary text-white">
+        <span>
+          <i class="fas fa-list fa-lg m-3 mt-3"></i>
+          Registros de alunos
+        </span>
       </div>
     </div>
-  </nav>
-  <div class="container-fluid">
-    <h3 class="m-4">Toda a cambada</h3>
-    <div class="row">
-      <div class="col-12">
-        {% if alunos %}
-        <div class="card br-light ms-4 me-4 mb-4" style="width:20%">
-          <span>
-            <i class="fas fa-list fa-lg m-3 mt-3"></i>
-            Registros de alunos
-          </span>
-        </div>
-        <div class="card-body">
-          <p class="card-text">
-          <div class="table-responsive">
-            <table class="table table-hover">
-              <thead>
-                <tr>
-                  <th scope="col">NickName</th>
-                  <th scope="col">Nome</th>
-                  <th scope="col">Email</th>
-                  <th scope="col">Ações</th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for aluno in alunos %}
-                <tr>
-                  <td>{{ aluno.nickname}}</td>
-                  <td>{{ aluno.nome}}</td>
-                  <td>{{ aluno.email}}</td>
-                  <td>
-                    <button type="button" class="btn btn-primary btn-sm" href="{% url 'view_aluno' aluno.id %}"
-                      data-bs-toggle="modal" data-bs-target="#modalViewAluno{{aluno.id}}">
-                      <i class="fas fa-circle-info fa-lg"></i>
-                    </button>
-                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                      data-bs-target="#modalViewAluno{{aluno.id}}">
-                      <i class="fas fa-edit fa-lg"></i>
-                    </button>
-                    <!-- Modal - View Aluno -->
-                    <div class="modal" id="modalViewAluno{{aluno.id}}" tabindex="-1"
-                      aria-labelledby="modalViewAlunoLabel1" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title">Aluno: {{ aluno.nickname }}</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true"></span>
-                            </button>
+    <div class="card-body">
+      <p class="card-text">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">NickName</th>
+              <th scope="col">Nome</th>
+              <th scope="col">Email</th>
+              <th scope="col">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for aluno in alunos %}
+            <tr>
+              <td>{{ aluno.nickname}}</td>
+              <td>{{ aluno.nome}}</td>
+              <td>{{ aluno.email}}</td>
+              <td>
+                <button type="button" class="btn btn-primary btn-sm" href="{% url 'view_aluno' aluno.id %}"
+                  data-bs-toggle="modal" data-bs-target="#modalViewAluno{{aluno.id}}">
+                  <i class="fas fa-circle-info fa-lg"></i>
+                </button>
+                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                  data-bs-target="#modalViewAluno{{aluno.id}}">
+                  <i class="fas fa-edit fa-lg"></i>
+                </button>
+                <!-- Modal - View Aluno -->
+                <div class="modal" id="modalViewAluno{{aluno.id}}" tabindex="-1" aria-labelledby="modalViewAlunoLabel1"
+                  aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title">Aluno: {{ aluno.nickname }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true"></span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <ul class="list-unstyled">
+                          <div style="width: 90%;">
+                            <li><strong>Nome/Nickname: </strong>{{aluno.nome}}/{{aluno.nickname}}</li>
+                            <li><strong>Email: </strong>{{aluno.email}}</li>
+                            <li><strong>Interesse: </strong>{{aluno.campo_de_estudo}}</li>
+                            <li><strong>Discord: </strong>{{aluno.discordid}}</li>
+                            <li><strong>Telefone: </strong>{{aluno.telefone}}</li>
+                            <li><strong>Dat Nasc: </strong>{{aluno.data_nascimento}}</li>
                           </div>
-                          <div class="modal-body">
-                            <ul class="list-unstyled">
-                              <div style="width: 90%;">
-                                <li><strong>Nome/Nickname: </strong>{{aluno.nome}}/{{aluno.nickname}}</li>
-                                <li><strong>Email: </strong>{{aluno.email}}</li>
-                                <li><strong>Interesse: </strong>{{aluno.campo_de_estudo}}</li>
-                                <li><strong>Discord: </strong>{{aluno.discordid}}</li>
-                                <li><strong>Telefone: </strong>{{aluno.telefone}}</li>
-                                <li><strong>Dat Nasc: </strong>{{aluno.data_nascimento}}</li>
-                              </div>
-                            </ul>
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                          </div>
-                        </div>
+                        </ul>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
                       </div>
                     </div>
-                  </td>
-                </tr>
-
-                {% endfor %}
-              </tbody>
-            </table>
-          </div>
-          {% else %}
-          <h5 class="alert alert-primary ms-4 me-4">Nenhum aluno cadastrado</h5>
-          {% endif %}
-
-        </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
       </div>
-      <footer class="mt-auto mb-4">
-        <div class="text-center">
-          <span>
-            Copyrigth &copy;
-            <script>document.write(new Date().getFullYear())</script> - Iramai
-          </span>
-        </div>
-      </footer>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
-</body>
+      {% else %}
+      <h5 class="alert alert-primary ms-4 me-4">Nenhum aluno cadastrado</h5>
+      {% endif %}
+    </div>
+  </div>
+</div>
 
-</html>
+{% endblock %}
