@@ -92,35 +92,17 @@
                           </div>
                           <div class="modal-body">
                             <ul class="list-unstyled">
-                              <li>
-                                <strong>Nome/Nickname:</strong>
-                                {{ aluno.nome }}/{{aluno.nickname}}
-                              </li>
-                              <li>
-                                <strong>Email:</strong>
-                                {{ aluno.email }}
-                              </li>
-                              <li>
-                                <strong>Interesse:</strong>
-                                {{ aluno.campo_de_estudo }}
-                              </li>
-                              <li>
-                                <strong>Discord:</strong>
-                                {{ aluno.discordid }}
-                              </li>
-                              <li>
-                                <strong>Telefone:</strong>
-                                {{ aluno.telefone }}
-                              </li>
-                              <li>
-                                <strong>Dat Nasc:</strong>
-                                {{ aluno.data_nascimento }}
-                              </li>
-
+                              <div style="width: 90%;">
+                                <li><strong>Nome/Nickname: </strong>{{aluno.nome}}/{{aluno.nickname}}</li>
+                                <li><strong>Email: </strong>{{aluno.email}}</li>
+                                <li><strong>Interesse: </strong>{{aluno.campo_de_estudo}}</li>
+                                <li><strong>Discord: </strong>{{aluno.discordid}}</li>
+                                <li><strong>Telefone: </strong>{{aluno.telefone}}</li>
+                                <li><strong>Dat Nasc: </strong>{{aluno.data_nascimento}}</li>
+                              </div>
                             </ul>
                           </div>
                           <div class="modal-footer">
-                            <button type="button" class="btn btn-primary">Salvar alterações</button>
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
                           </div>
                         </div>
